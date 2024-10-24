@@ -42,3 +42,16 @@ button {
     padding: 20px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
+
+footer {
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+    padding: 10px 0; /* Padding for spacing */
+    margin-top: 20px; /* Space above the footer */
+    border-top: 1px solid #ddd; /* Optional border at the top */
+}
+
+.footer-quote {
+    font-style: italic; /* Italic text for the quote */
+    color: #555; /* Slightly darker color for better readability */
+    margin: 0; /* Remove default margin */
+}
