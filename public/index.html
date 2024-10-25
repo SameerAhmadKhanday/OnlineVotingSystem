@@ -1,34 +1,275 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Voting System</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
+    <title>Info Page</title>
+    <script src="https://kit.fontawesome.com/40f8247f4b.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./index.css">
+    <style>
+        /* Drawer styles */
+        .drawer {
+            background-image: url(https://www.ids.ac.uk/wp-content/uploads/2024/05/Blognews-story-1024x600-px-1.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .drawer-toggle {
+            display: none;
+        }
+
+        .drawer-content {
+            padding: 20px;
+        }
+
+        .drawer-button {
+            cursor: pointer;
+            background-color: #007bff;
+            /* background-color:black; */
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 4px;
+            border: none;
+            float: right;
+        }
+
+        .drawer-side {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 250px;
+            background-color: #f4f4f4;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .drawer-side ul {
+            list-style-type: none;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .drawer-side ul li {
+            margin-bottom: 15px;
+        }
+
+        .drawer-side ul li a {
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+            display: block;
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        .drawer-side ul li a:hover {
+            background-color: #ddd;
+        }
+
+        .drawer-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        /* Show drawer when checkbox is checked */
+        .drawer-toggle:checked ~ .drawer-side {
+            transform: translateX(0);
+        }
+
+        .drawer-toggle:checked ~ .drawer-overlay {
+            display: block;
+        }
+
+
+    </style>
 </head>
 <body>
-    <div class="container mt-5">
-        <h1 class="text-center">Vote for Your Party</h1>
-        <div class="text-center">
-            <div class="btn-group" role="group" aria-label="Voting Options">
-                <button class="btn btn-primary" onclick="vote('Party A')">Vote for Party A</button>
-                <button class="btn btn-success" onclick="vote('Party B')">Vote for Party B</button>
-                <button class="btn btn-warning" onclick="vote('Party C')">Vote for Party C</button>
+
+   
+        <div class="header">
+            <img src="https://www.eci.gov.in/newimg/eci-logo.svg" alt="oops">
+
+            <div class="tollfree">
+                <div><i class="fa-solid fa-phone"></i></div>
+                <div>Toll Free - 1950</div> 
             </div>
+
+            <div class="icons">
+                <div><i class="fa-brands fa-facebook"></i></div>
+                <div><i class="fa-brands fa-instagram"></i></div>
+                <div><i class="fa-brands fa-twitter"></i></div>
+                <div><i class="fa-brands fa-youtube"></i></div>
+            </div>
+
+
+            <label for="my-drawer" class="drawer-button"><i class="fa-solid fa-bars"></i></label>
+            
+        
         </div>
-        <div id="message" class="mt-3"></div>
-        <h2 class="mt-5">Current Results:</h2>
-        <button class="btn btn-info" onclick="getResults()">Show Results</button>
-        <div id="results" class="mt-3"></div>
+        
+  
+    <div class="drawer">
+        <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+        <div class="drawer-content">
+            <!-- Page content here -->
+            
+            <h1>Information About Voting and Elections</h1>
+            <p>Here, you can add engaging content about the importance of voting, election procedures, and more to educate and inform users.</p>
+
+           <h2>key points</h2>
+            <ul>
+                <li>Regular Events: Elections happen regularly to renew leadership.</li>
+                <li>Different Levels: Local, regional, and national elections impact all parts of society.</li>
+                <li>Elections may choose presidents, referendums, or local leaders.</li>
+                <li>Campaigns let you see what each candidate stands for.</li>
+                <li>Fair elections are a key part of any democratic country.</li>
+            </ul>
+
+            <h2>Why Every Vote Matters:</h2>
+            <ul>
+                <li>Close Results: Some elections are decided by just a few votes.</li>
+                <li>Inclusive Representation: Voting brings diverse voices into the conversation.</li>
+                <li>Shaping the Future: Each vote plays a role in the country’s direction.</li>
+            </ul>
+
+            <h2>Why Voting is Important:</h2>
+            <ul>
+                <li>Power to Choose: Voting lets you choose leaders who represent your ideas and needs.</li>
+                <li>Strengthens Democracy: More people voting means a government that reflects everyone.</li>
+                <li>Holds Leaders Accountable: Voting helps ensure leaders do what they promised.</li>
+                <li>Impacts Daily Life: Your vote affects things like schools, jobs, and healthcare.</li>
+                <li>Protects Freedoms: Voting keeps our rights strong for the future</li>
+                <li>Gives Everyone a Voice: Voting includes communities that may not be heard otherwise.</li>
+            </ul>
+
+            <h2 style="color: wheat;">Your Voice, Your Power</h2>
+            <p style="color:black;">
+                Voting is not just a right; it’s a powerful way to express your voice and influence the future of your community and country. Every vote counts and has the potential to shape policies, elect leaders, and bring about change. By participating in elections, you take an active role in democracy and stand up for the issues that matter most to you. Remember, your vote is your voice—don’t let others speak for you. Embrace the opportunity to make a difference, inspire others, and contribute to a brighter future for all. Vote with purpose, and let your voice be heard!
+            </p>
+            <!-- Add more content here as needed -->
+        </div>
+        <div class="drawer-side">
+            <label for="my-drawer" class="drawer-overlay"></label>
+            
+            
+
+            <ul class="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+                <!-- Sidebar content here -->
+                <li><a href="#">About Elections</a></li>
+                <li><a href="#">Voting Process</a></li>
+                <li><a href="#">FAQs</a></li>
+                <li><a href="#">Contact</a></li>
+                <!-- Sign In link -->
+                <li><a href="/signup.html">Sign In</a></li> <!-- Link to Sign In page -->
+            </ul>
+        </div>
     </div>
 
-    <footer class="text-center mt-5">
-        <p class="footer-quote">
-            "Voting is the foundation stone for political action." – Martin Luther King Jr.
-        </p>
-    </footer>
+    <div class="mainContainer">
+        <div class="imageContainer">
+            <img src="https://www.eci.gov.in/newimg/EVM/1.jpg" alt="Image 1">
+            <span class="imageText">EVM/VVPT THE PRIDE OF INDIAN ELECTIONS</span>
+        </div>
+        <div class="imageContainer">
+            <img src="https://www.eci.gov.in/newimg/EVM/2.jpg" alt="Image 2">
+            <span class="imageText">VVPAT-voter-Because Seeing is Believing</span>
+        </div>
+        <div class="imageContainer">
+            <img src="https://www.eci.gov.in/newimg/EVM/3.jpg" alt="Image 3">
+            <span class="imageText">How to cast your Vote using EVM & VVpat</span>
+        </div>
+        <div class="imageContainer">
+            <img src="https://www.eci.gov.in/newimg/EVM/4.jpg" alt="Image 4">
+            <span class="imageText">verify your Vote</span>
+        </div>
+        <div class="imageContainer">
+            <img src="https://www.eci.gov.in/newimg/EVM/5.jpg" alt="Image 5">
+            <span class="imageText">How to caste your Vote using EVM & VVPAT</span>
+        </div>
+        <div class="imageContainer">
+            <img src="https://www.eci.gov.in/newimg/EVM/6.jpg" alt="Image 6">
+            <span class="imageText">How to caste your Vote using EVM & VVPAT</span>
+        </div>
+        <div class="imageContainer">
+            <img src="https://www.eci.gov.in/newimg/EVM/7.jpg" alt="Image 7">
+            <span class="imageText">VVPAT further enhances transparency</span>
+        </div>
+        <div class="imageContainer">
+            <img src="https://www.eci.gov.in/newimg/EVM/8.jpg" alt="Image 8">
+            <span class="imageText">Verify your Vote</span>
+        </div>
+        <div class="imageContainer">
+            <img src="https://www.eci.gov.in/newimg/EVM/9.png" alt="Image 9">
+            <span class="imageText">Know your EVM</span>
+        </div>
+    </div>
 
-    <script src="script.js"></script>
+
+    <!-- herosection -->
+    <div class="heroSection">
+        <img src="https://www.eci.gov.in/newimg/ticket-24.png" alt="Hero Image" class="heroImage">
+
+        
+        <div class="blocks">
+            <ul>
+                <li>About ECI</li>
+                <li>Directory</li>
+                <li>Contact Us</li>
+                <li>RTI online</li>
+                <li>eOffice</li>
+            </ul>
+            <ul>
+                <li>Apply for Voter card</li>
+                <li>SVEEP</li>
+                <li>Service Voter Portal</li>
+                <li>Download cVIGIL</li>
+                <li>APAR</li>
+            </ul>
+            <ul>
+                <li>international Cooperation</li>
+                <li>india A-WEB Center</li>
+                <li>VoiceNet</li>
+                <li>MCC Cases</li>
+                <li>Political Parties Regestration</li>
+            </ul>
+        </div>
+        
+        
+        
+        <div class="imageGallery">
+            <div class="imageRow">
+                <img src="https://www.eci.gov.in/newimg/icons/ict/voter-helpline.png" alt="Image 1" class="galleryImage">
+                <img src="https://www.eci.gov.in/newimg/icons/ict/saksham-eci.png" alt="Image 2" class="galleryImage">
+            </div>
+            <div class="imageRow">
+                <img src="https://www.eci.gov.in/newimg/icons/ict/kyc-eci.png" alt="Image 3" class="galleryImage">
+                <img src="https://www.eci.gov.in/newimg/icons/ict/cVigil.png" alt="Image 4" class="galleryImage">
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    
+
+    <div class="footer">
+        <p>© Copyright Election Commission of India 2024</p>
+    </div>
 </body>
 </html>
+
