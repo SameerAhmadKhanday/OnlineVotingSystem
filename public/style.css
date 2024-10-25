@@ -2,7 +2,7 @@ body {
     background: linear-gradient(135deg, rgba(255, 182, 193, 0.7), rgba(255, 255, 224, 0.7), rgba(255, 239, 153, 0.7));
     background-size: 400% 400%;
     animation: gradientAnimation 15s ease infinite;
-    font-family: Arial, sans-serif;
+    font-family: Arial, sans-serif; /* Keep your original font */
     color: #333333; /* Darker text for better contrast */
 }
 
@@ -41,6 +41,23 @@ button {
     border-radius: 5px;
     padding: 20px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px; /* Space above the results section */
+    font-family: 'Arial', sans-serif; /* Ensure consistency in font */
+    font-size: 18px; /* Adjust font size for results */
+}
+
+#winningStatementContainer {
+    text-align: center; /* Center align winning and losing statements */
+}
+
+#winningStatement {
+    font-size: 20px; /* Make the winning statement slightly larger */
+    font-weight: bold; /* Bold font for emphasis */
+}
+
+#losingStatements {
+    margin-top: 10px; /* Space above the losing statements */
+    font-size: 18px; /* Consistent font size for losing statements */
 }
 
 footer {

@@ -1,5 +1,3 @@
-
-
 async function login() {
     const userId = document.getElementById('userId').value;
     const password = document.getElementById('password').value;
@@ -20,11 +18,12 @@ async function login() {
     const result = await response.json();
 
     if (response.ok) {
-        document.getElementById('login-message').innerText = 'Login successful! Redirecting to voting page...';
+        document.getElementById('login-message').innerText = result.message; // Use the response message
         setTimeout(() => {
-            window.location.href = 'index.html'; // Redirect to voting page after login
+            window.location.href = result.redirect; // Redirect to the voting page
         }, 2000);
     } else {
         document.getElementById('login-message').innerText = result.message || 'Login failed!';
     }
 }
+

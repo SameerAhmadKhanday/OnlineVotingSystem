@@ -1,71 +1,61 @@
-async function vote(party) {
-    const userId = prompt("Enter your User ID to vote:");
-    
+// Function to handle voting
+function vote(party) {
+    const userId = prompt("Please enter your User ID:"); // Prompt for user ID
     if (!userId) {
-        alert("User ID is required!");
+        alert("User ID is required to vote!");
         return;
     }
 
-    const response = await fetch('/vote', {
+    fetch('/vote', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'User-ID': userId
+            'user-id': userId
         },
-        body: JSON.stringify({ party }),
+        body: JSON.stringify({ party })
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('message').innerText = data.message;
+        if (data.message.startsWith("Thank you")) {
+            getResults(); // Update results after voting
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        document.getElementById('message').innerText = "Error in voting!";
     });
-    
-    const result = await response.json();
-    document.getElementById('message').innerText = result.message;
 }
 
-async function getResults() {
-    const response = await fetch('/results');
+// Function to get and display results
+function getResults() {
+    fetch('/results')
+        .then(response => response.json())
+        .then(data => {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '';
 
-    if (!response.ok) {
-        alert('Failed to fetch results.');
-        return;
-    }
+            let winningParty = '';
+            let highestVotes = 0;
 
-    const results = await response.json();
+            for (const party in data) {
+                resultsDiv.innerHTML += `<h4>${party}:</h4>`;
+                resultsDiv.innerHTML += `<p>Votes: ${data[party].count} votes</p>`;
+                resultsDiv.innerHTML += `<p>Users: ${data[party].users.join(', ')}</p>`; // Display users who voted for this party
 
-    let resultsText = '';
-    let winningParty = '';
-    let maxVotes = 0;
-    let tiedParties = []; // Array to hold parties with the maximum votes
-
-    for (const party in results) {
-        resultsText += `${party}: ${results[party].count} votes<br>`;
-        resultsText += `Voted by: ${results[party].users.join(', ')}<br><br>`;
-
-        // Check for the maximum votes
-        if (results[party].count > maxVotes) {
-            maxVotes = results[party].count;
-            winningParty = party;
-            tiedParties = [party]; // Reset the tie list with the new winning party
-        } else if (results[party].count === maxVotes) {
-            tiedParties.push(party); // Add to the tie list if votes are equal
-        }
-    }
-
-    // Display the results
-    const resultContainer = `<div class="results-container">`;
-    
-    if (tiedParties.length > 1) {
-        resultsText += `<div class="winning-party" style="font-weight: bold; text-align: center;">There is a tie between: ${tiedParties.join(' and ')}</div>`;
-    } else {
-        // Only one winner
-        resultsText += `<div class="winning-party" style="font-weight: bold; text-align: center;">Winning Party: ${winningParty} with ${maxVotes} votes</div>`;
-        
-        // Calculate margin for other parties
-        const margins = {};
-        for (const party in results) {
-            if (party !== winningParty) {
-                margins[party] = maxVotes - results[party].count;
-                resultsText += `<div class="margin-info" style="text-align: center;">${party} is behind by ${margins[party]} votes</div>`;
+                if (data[party].count > highestVotes) {
+                    highestVotes = data[party].count;
+                    winningParty = party;
+                }
             }
-        }
-    }
 
-    document.getElementById('results').innerHTML = resultContainer + resultsText + '</div>';
+            // Display the winning party
+            if (winningParty) {
+                resultsDiv.innerHTML += `<h3>Winning Party: ${winningParty} with ${highestVotes} votes</h3>`;
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching results:', error);
+            document.getElementById('results').innerText = "Error fetching results!";
+        });
 }

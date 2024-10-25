@@ -1,4 +1,3 @@
-
 async function signup() {
     const userId = document.getElementById('userId').value;
     const password = document.getElementById('password').value;
